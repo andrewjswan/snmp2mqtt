@@ -95,7 +95,7 @@ export const createClient = async (
 
     const onConnect = async () => {
         await publish(`${config.base_topic}/${STATUS_TOPIC}`, ONLINE);
-        await publish(CONFIG_TOPIC, { version });
+        await publish(`${config.base_topic}/${CONFIG_TOPIC}`, { version });
         emitter.emit("connect");
     };
 
