@@ -18,6 +18,7 @@ export interface MQTTConfig {
 
 export interface TargetConfig {
     host: string;
+    mac?: string;
     sensors: SensorConfig[];
     name?: string;
     device_manufacturer?: string;
