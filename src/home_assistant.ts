@@ -17,7 +17,7 @@ export const createHomeAssistantTopics = async (
         };
 
         if (target.mac) {
-            device.connections = [ { mac: target.mac } ];
+            device.connections = [ [ "mac", target.mac ] ];
         }
         if (target.suggested_area) {
             device.suggested_area = target.suggested_area;
