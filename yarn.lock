@@ -119,10 +119,10 @@ argparse@^2.0.1:
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
   integrity sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
 
-asn1-ber@*:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/asn1-ber/-/asn1-ber-1.1.0.tgz#b69f91578c08afa65511124908a7a82f62c6571c"
-  integrity sha512-t/pm9zz3CC7jE2ItzMPi4rYUXp4d3JkLAUQY8E/5u5Lkaq7KMvMalRWrW9WWARm5gOB/HE/mkorImJwSL7fi9w==
+asn1-ber@^1.2.1:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/asn1-ber/-/asn1-ber-1.2.2.tgz#cb8b13f58b537314610c24c560f2353320786822"
+  integrity sha512-CbNem/7hxrjSiOAOOTX4iZxu+0m3jiLqlsERQwwPM1IDR/22M8IPpA1VVndCLw5KtjRYyRODbvAEIfuTogNDng==
 
 async-mqtt@^2.6.1:
   version "2.6.1"
@@ -547,12 +547,12 @@ ms@2.1.2:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-net-snmp@^3.5.8:
-  version "3.5.8"
-  resolved "https://registry.yarnpkg.com/net-snmp/-/net-snmp-3.5.8.tgz#90fd37b2ef28bf30a96fc176540bec0fe2172d5e"
-  integrity sha512-SPMn8jE9QXD9QUMOzEeEEXAYZtRIX3zUyPDewZmRRZ0Qgx9t42H90VQG165tG32/MglU8gCoRWoBsGapyN75Jg==
+net-snmp@^3.11.2:
+  version "3.11.2"
+  resolved "https://registry.yarnpkg.com/net-snmp/-/net-snmp-3.11.2.tgz#6bd55f19e171b960f2d2a619a8dbe598116e086c"
+  integrity sha512-QKy2JQHIBsSK344dUxYRZv7tU0ANk8f8fzKD/Mmq/cCxm/cPbtiT7009QEgxdViW/gGjqGIOiLHxkCc+JhZltg==
   dependencies:
-    asn1-ber "*"
+    asn1-ber "^1.2.1"
     smart-buffer "^4.1.0"
 
 once@^1.3.0, once@^1.3.1, once@^1.4.0:
