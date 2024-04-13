@@ -88,6 +88,9 @@ export const schema = {
                 device_class: {
                     type: "string",
                 },
+                entity_category: {
+                    type: "string",
+                },
                 icon: {
                     type: "string",
                 },

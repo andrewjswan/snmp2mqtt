@@ -51,7 +51,6 @@ export const createHomeAssistantTopics = async (
                 unique_id: `snmp2mqtt.${md5(`${target.host}-${sensor.oid}`)}`,
                 state_topic: mqtt.sensorValueTopic(sensor, target),
                 qos: mqtt.qos,
-                entity_category: "diagnostic",
             };
 
             if (sensor.unit_of_measurement) {
@@ -59,6 +58,9 @@ export const createHomeAssistantTopics = async (
             }
             if (sensor.device_class) {
                 discovery.device_class = sensor.device_class;
+            }
+            if (sensor.entity_category) {
+                discovery.entity_category = sensor.entity_category;
             }
             if (sensor.icon) {
                 discovery.icon = sensor.icon;
