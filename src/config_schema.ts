@@ -13,6 +13,9 @@ export const schema = {
                 name: {
                     type: "string",
                 },
+                mac: {
+                    type: "string",
+                },
                 device_manufacturer: {
                     type: "string",
                 },

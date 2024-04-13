@@ -16,6 +16,9 @@ export const createHomeAssistantTopics = async (
             via_device: "snmp2mqtt",
         };
 
+        if (target.mac) {
+            device.connections = [ { mac: target.mac } ];
+        }
         if (target.suggested_area) {
             device.suggested_area = target.suggested_area;
         }
