@@ -9,6 +9,8 @@ export interface MQTTConfig {
     qos: 0 | 1 | 2;
     client_id?: string;
     keepalive?: number;
+    base_topic?: string;
+    host_name_as_target?: boolean;
     ca?: string;
     cert?: string;
     key?: string;

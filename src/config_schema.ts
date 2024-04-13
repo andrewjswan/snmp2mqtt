@@ -138,6 +138,14 @@ export const schema = {
                     type: "string",
                     default: "",
                 },
+                base_topic: {
+                    type: "string",
+                    default: "snmp2mqtt",
+                },
+                host_name_as_target: {
+                    type: "boolean",
+                    default: false,
+                },
                 ca: {
                     type: "string",
                 },

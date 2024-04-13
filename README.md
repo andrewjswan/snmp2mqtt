@@ -17,6 +17,8 @@ mqtt:
     clean: true # Optional: clean session (default: true)
     retain: true # Optional: retain (default: true)
     qos: 2 # Optional: QoS (default: 0)
+    base_topic: # Optional: the base level of the topic (default: snmp2mqtt)
+    host_name_as_target: true # Optional: Use the target's name instead of the host as the MQTT topic (default: false)
     ca: /cert/ca.pem # Optional: CA for TLS connection (default: none)
     cert: /cert/cert.pem # Optional: certificate for TLS connection (default: none)
     key: /cert/key.pem # Optional: private key for TLS connection (default: none)
@@ -29,6 +31,7 @@ homeassistant:
 targets:
     - host: 192.168.0.2 # Required: target IP address
       name: Raspberry Pi # Optional: target name
+      mac: 00:00:00:00:00:00 # Optional: mac adress
       scan_interval: 30 # Optional: fetch interval in seconds (default: 10)
       device_manufacturer: Raspberry Pi # Optional: set the device manufacturer in Home Assistant
       device_model: 3 Model B # Optional: set the device model in Home Assistant
@@ -44,6 +47,8 @@ targets:
             unit_of_measurement: days # Optional: set the unit of measurement in Home Assistant
             transform: "value / 6000" # Optional: a transform function written in JavaScript
             icon: mdi:calendar-clock # Optional: set an icon in Home Assistant
+            device_class: temperature # Optional: set the Home Assistant class of the device.
+            entity_category: diagnostic # Optional: set the Home Assistant entity category.
             binary_sensor: false # Optional: whether to expose the sensor as a binary sensor in Home Assistant
 
     - host: 192.168.0.3
