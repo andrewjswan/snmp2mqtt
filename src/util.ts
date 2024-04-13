@@ -11,4 +11,8 @@ export function slugify(str: string) {
     ).replace(/^_+|_+$/g, "");
 }
 
+export function sanitize(str: string) {
+    return str.replaceAll(/[^a-zA-Z0-9-_]/g, '_').toLowerCase()
+}
+
 export const md5 = (str: string) => createHash("md5").update(str).digest("hex");

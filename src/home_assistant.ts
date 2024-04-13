@@ -1,6 +1,6 @@
 import { Client } from "./mqtt";
 import { TargetConfig } from "./types";
-import { md5, slugify } from "./util";
+import { md5, slugify, sanitize } from "./util";
 
 export const createHomeAssistantTopics = async (
     mqtt: Client,
@@ -34,7 +34,7 @@ export const createHomeAssistantTopics = async (
                 ? "binary_sensor"
                 : "sensor";
             const sensorName = slugify(sensor.name);
-            const topic = `${prefix}/${sensorType}/snmp2mqtt/${sensorName}/config`;
+            const topic = `${prefix}/${sensorType}/snmp2mqtt/${target.name ? sanitize(target.name) : sanitize(target.host)}_${sensorName}/config`;
 
             const discovery: any = {
                 availability: [
