@@ -7,17 +7,19 @@ on:
 
 jobs:
   docker-publish:
-    name: Publish to Docker Hub
+    name: Publish to Github
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Git Checkout
         uses: actions/checkout@v4.1.2
+
       - name: Automated version bump
         uses: phips28/gh-action-bump-version@master
         id: bump
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Extract version
         run: |
           RE='[^0-9]*\([0-9]*\)[.]\([0-9]*\)[.]\([0-9]*\)\([0-9A-Za-z-]*\)'
@@ -30,21 +32,26 @@ jobs:
         id: version
         env:
           version: ${{ steps.bump.outputs.newTag }}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3.0.0
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.3.0
-      - name: Login to DockerHub
+
+      - name: Login to GHCR
         uses: docker/login-action@v3.1.0
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build and push
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+
+      - name: Build and Push
         uses: docker/build-push-action@v5.3.0
         with:
           push: true
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
           tags: |
-            dchesterton/snmp2mqtt:latest
-            dchesterton/snmp2mqtt:${{ steps.version.outputs.version }}
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ steps.version.outputs.version }}
           labels: "version=${{ steps.version.outputs.version }}"
