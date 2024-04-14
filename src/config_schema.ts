@@ -82,6 +82,9 @@ export const schema = {
                 transform: {
                     type: "string",
                 },
+                template: {
+                    type: "string",
+                },
                 unit_of_measurement: {
                     type: "string",
                 },

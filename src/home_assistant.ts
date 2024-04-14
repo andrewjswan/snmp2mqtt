@@ -53,6 +53,9 @@ export const createHomeAssistantTopics = async (
                 qos: mqtt.qos,
             };
 
+            if (sensor.template) {
+                discovery.value_template = sensor.template;
+            }
             if (sensor.unit_of_measurement) {
                 discovery.unit_of_measurement = sensor.unit_of_measurement;
             }

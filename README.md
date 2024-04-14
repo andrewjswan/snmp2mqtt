@@ -46,6 +46,7 @@ targets:
             name: Raspberry Pi Uptime # Required: sensor name
             unit_of_measurement: days # Optional: set the unit of measurement in Home Assistant
             transform: "value / 6000" # Optional: a transform function written in JavaScript
+            template: "{{ value | float(0) / 6000 }}" # Optional: a HA template to get the state of the sensor (Used for Discovery).
             icon: mdi:calendar-clock # Optional: set an icon in Home Assistant
             device_class: temperature # Optional: set the Home Assistant class of the device.
             entity_category: diagnostic # Optional: set the Home Assistant entity category.
