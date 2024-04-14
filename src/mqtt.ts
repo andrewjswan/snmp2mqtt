@@ -33,10 +33,10 @@ const connect = (config: MQTTConfig) => {
 
     let logConfig = Object.assign({}, config);
     if (config.username) {
-        logConfig.username = "[hidden user]";
+        logConfig.username = "[hidden]";
     }
     if (logConfig.password) {
-        logConfig.password = "[hidden password]";
+        logConfig.password = "[hidden]";
     }
     console.log(logConfig);
 
