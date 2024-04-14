@@ -31,6 +31,13 @@ const connect = (config: MQTTConfig) => {
         rejectUnauthorized: config.reject_unauthorized,
     };
 
+    let logConfig = config;
+    if (config.username) {
+        logConfig.username = "[hidden user]";
+    }
+    if (logConfig.password) {
+        logConfig.password = "[hidden password]";
+    }
     console.log(config);
 
     if (config.username) {
