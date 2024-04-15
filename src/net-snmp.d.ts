@@ -1,1 +1,1 @@
-declare module "net-snmp";
+declare module "net-snmp"

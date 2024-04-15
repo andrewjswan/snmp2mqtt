@@ -1,1 +1,1 @@
-declare module 'better-ajv-errors';
+declare module "better-ajv-errors"
