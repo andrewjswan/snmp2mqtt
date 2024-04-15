@@ -8,10 +8,10 @@ updates:
           - dependency-name: "@types/node"
       commit-message:
           prefix: ""
-          prefix-development: "[ci skip]"
+          prefix-development: "[NPM]"
     - package-ecosystem: "github-actions"
       directory: "/"
       schedule:
           interval: "daily"
       commit-message:
-          prefix: "[ci skip]"
+          prefix: "[DEP]"
