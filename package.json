@@ -21,7 +21,7 @@
         "@types/js-yaml": "^4.0.5",
         "@types/luxon": "^3.4.2",
         "@types/node": "^14.14.27",
-        "prettier": "^2.5.1",
+        "prettier": "^3.2.5",
         "ts-node": "^10.4.0",
         "typescript": "^5.4.5"
     },
