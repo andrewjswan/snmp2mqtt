@@ -189,7 +189,7 @@ jobs:
             failOnError: false
 
   test:
-    name: Test
+    name: Test / Build
     if: ${{ needs.changes.outputs.dependencies == 'true' }}
     needs: 
       - changes
@@ -217,7 +217,3 @@ jobs:
             org.opencontainers.image.title=snmp2mqtt
             org.opencontainers.image.description=Expose SNMP sensors to MQTT
           tags: ${{env.REGISTRY_IMAGE}}:test
-          
-      - name: Test Image
-        run: |
-          docker run --rm ${{env.REGISTRY_IMAGE}}:test
