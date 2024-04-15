@@ -5,6 +5,7 @@ enum LogLevel {
   INFO = 1,
   WARNING = 2,
   ERROR = 3,
+  MAIN = 4,
 }
 
 export type LogLevelStrings = keyof typeof LogLevel
@@ -26,6 +27,7 @@ export const createLogger = (minLevel: LogLevelStrings) => {
   const info = createLevelFn(LogLevel.INFO, n)
   const warning = createLevelFn(LogLevel.WARNING, n)
   const error = createLevelFn(LogLevel.ERROR, n)
+  const main = createLevelFn(LogLevel.MAIN, n)
 
-  return { debug, info, warning, error }
+  return { debug, info, warning, error, main }
 }

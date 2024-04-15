@@ -14,7 +14,7 @@ const log = createLogger(config.log)
     readFileSync(`${__dirname}/../package.json`).toString(),
   ).version
 
-  log.info(`Starting snmp2mqtt v${version}...`)
+  log.main(`Starting snmp2mqtt v${version}...`)
 
   const mqtt = await createClient(config.mqtt, log, version)
 
@@ -85,7 +85,7 @@ const log = createLogger(config.log)
   })
 
   const exit = async (code: number = 0) => {
-    log.info("Exiting program...")
+    log.main("Exiting program...")
     mqtt.off("close", pauseClients)
 
     await mqtt.end()
@@ -98,7 +98,7 @@ const log = createLogger(config.log)
   }
 
   process.on("SIGINT", async () => {
-    log.info("Caught interrupt signal, exiting gracefully...")
+    log.main("Caught interrupt signal, exiting gracefully...")
     await exit(0)
   })
 
