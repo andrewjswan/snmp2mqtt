@@ -11,6 +11,7 @@
       { "name": "Andrew J.Swan", "url": "https://github.com/andrewjswan/" }
     ],
     "keywords": [ "snmp", "mqtt", "snmp2mqtt" ],
+    "homepage": "https://github.com/andrewjswan/snmp2mqtt",
     "bugs": "https://github.com/andrewjswan/snmp2mqtt/issues",
     "repository": { "type": "git", "url": "https://github.com/andrewjswan/snmp2mqtt.git" },
     "dependencies": {
