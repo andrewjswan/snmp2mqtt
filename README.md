@@ -3,6 +3,8 @@
 ## General
 
 [![snmp2mqtt](https://img.shields.io/badge/SNMP-MQTT-blue.svg)](https://github.com/andrewjswan/snmp2mqtt/)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/andrewjswan/snmp2mqtt/build.yml?logo=github)](https://github.com/andrewjswan/snmp2mqtt/actions)
+[![GitHub package.json version](https://img.shields.io/github/package-json/v/andrewjswan/snmp2mqtt)](https://github.com/andrewjswan/snmp2mqtt/pkgs/container/snmp2mqtt)
 [![GitHub](https://img.shields.io/github/license/andrewjswan/snmp2mqtt-addon?color=blue)](https://github.com/andrewjswan/snmp2mqtt/blob/master/LICENSE)
 [![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
