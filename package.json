@@ -1,11 +1,18 @@
 {
     "name": "snmp2mqtt",
     "version": "1.0.8",
+    "description": "Expose SNMP sensors to MQTT with Home Assistant support",
     "license": "MIT",
     "bin": {
         "snmp2mqtt": "dist/index.js"
     },
     "author": "Daniel Chesterton",
+    "contributors": [
+      { "name": "Andrew J.Swan", "url": "https://github.com/andrewjswan/" }
+    ],
+    "keywords": [ "snmp", "mqtt", "snmp2mqtt" ],
+    "bugs": "https://github.com/andrewjswan/snmp2mqtt/issues",
+    "repository": { "type": "git", "url": "https://github.com/andrewjswan/snmp2mqtt.git" },
     "dependencies": {
         "ajv": "^8.12.0",
         "async-mqtt": "^2.6.3",
