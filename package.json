@@ -1,6 +1,6 @@
 {
     "name": "snmp2mqtt",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "Expose SNMP sensors to MQTT with Home Assistant support",
     "license": "MIT",
     "bin": {
@@ -44,8 +44,8 @@
         "typescript": "^5.4.5"
     },
     "prettier": {
-      "semi": false,
-      "endOfLine": "lf"
+        "semi": false,
+        "endOfLine": "lf"
     },
     "scripts": {
         "build": "rm -rf dist && tsc",
