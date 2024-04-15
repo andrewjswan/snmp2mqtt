@@ -159,10 +159,10 @@ base64-js@^1.3.1:
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
-better-ajv-errors@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/better-ajv-errors/-/better-ajv-errors-1.1.2.tgz#6accafad01e1ae93121cf915c8c99377f609c010"
-  integrity sha512-xpFTC7JqkSGkvchJlH4IFtmwZ5SXomh0FqbEVEHRcXl/aiHh9nM/dnNnGTlxjrFCjWOVLLWpcNW1Hcrzs55/lg==
+better-ajv-errors@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/better-ajv-errors/-/better-ajv-errors-1.2.0.tgz#6412d58fa4d460ff6ccbd9e65c5fef9781cc5286"
+  integrity sha512-UW+IsFycygIo7bclP9h5ugkNH8EjCSgqyFB/yQ4Hqqa1OEYDtb0uFIkYE0b6+CjkgJYVM5UKI/pJPxjYe9EZlA==
   dependencies:
     "@babel/code-frame" "^7.16.0"
     "@humanwhocodes/momoa" "^2.0.2"
