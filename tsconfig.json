@@ -1,5 +1,6 @@
 {
     "extends": "@tsconfig/node16/tsconfig.json",
+    "allowJs": true,
     "compilerOptions": {
         "outDir": "./dist"
     }
