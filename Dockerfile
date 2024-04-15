@@ -4,8 +4,8 @@ FROM base as builder
 WORKDIR /app
 
 COPY package.json /app
-COPY yarn.lock /app
 COPY tsconfig.json /app
+COPY yarn.lock /app
 COPY src /app/src
 
 RUN yarn install --frozen-lockfile
