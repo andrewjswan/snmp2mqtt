@@ -43,7 +43,6 @@ export const createHomeAssistantTopics = async (
             topic: mqtt.sensorStatusTopic(sensor, target),
           },
         ],
-        availability_mode: "all",
         device,
         name: sensor.name,
         unique_id: `snmp2mqtt.${md5(`${target.host}-${sensor.oid}`)}`,
@@ -51,6 +50,9 @@ export const createHomeAssistantTopics = async (
         qos: mqtt.qos,
       }
 
+      if (sensor.availability_mode) {
+        discovery.availability_mode = sensor.availability_mode
+      }
       if (sensor.template) {
         discovery.value_template = sensor.template
       }

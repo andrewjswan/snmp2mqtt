@@ -100,6 +100,11 @@ export const schema = {
         binary_sensor: {
           type: "boolean",
         },
+        availability_mode: {
+          type: "string",
+          enum: ["all", "any", "latest"],
+          default: "all",
+        },
       },
       additionalProperties: false,
     },
