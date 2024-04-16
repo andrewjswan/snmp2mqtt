@@ -75,6 +75,15 @@ jobs:
           tag_name: ${{needs.version.outputs.version}}
           generate_release_notes: true
 
+  codeql:
+    name: CodeQL
+    uses: ./.github/workflows/codeql.yml
+    needs: 
+      - release
+    permissions:
+      security-events: write
+    secrets: inherit
+
   build:
     name: Digest
     if: ${{ needs.changes.outputs.changes == 'true' }}
