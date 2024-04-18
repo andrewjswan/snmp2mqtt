@@ -49,7 +49,7 @@ export interface SensorConfig {
   entity_category?: string
   icon?: string
   binary_sensor?: boolean
-  availability_mode?: "all" | "any" | "latest"
+  availability_mode?: "all" | "any" | "latest" | "online"
 }
 
 export interface Config {
