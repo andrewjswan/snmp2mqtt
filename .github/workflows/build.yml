@@ -70,24 +70,11 @@ jobs:
         env:
           version: ${{ steps.bump.outputs.newTag }}
 
-  release:
-    name: Release
-    needs: 
-      - version
-    runs-on: ubuntu-latest
-    steps:
-      - name: Release
-        uses: softprops/action-gh-release@v2
-        with:
-          name: SNMP2MQTT v${{needs.version.outputs.version}}
-          tag_name: ${{needs.version.outputs.version}}
-          generate_release_notes: true
-
   codeql:
     name: CodeQL
     uses: ./.github/workflows/codeql.yml
     needs: 
-      - release
+      - version
     permissions:
       security-events: write
     secrets: inherit
@@ -166,6 +153,20 @@ jobs:
           path: /tmp/digests/*
           if-no-files-found: error
           retention-days: 1
+
+  release:
+    name: Release
+    needs: 
+      - version
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: SNMP2MQTT v${{needs.version.outputs.version}}
+          tag_name: ${{needs.version.outputs.version}}
+          generate_release_notes: true
       
   merge:
     name: Publish to Github
