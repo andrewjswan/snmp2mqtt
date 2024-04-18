@@ -59,7 +59,7 @@ targets:
         device_class: temperature # Optional: set the Home Assistant class of the device.
         entity_category: diagnostic # Optional: set the Home Assistant entity category.
         binary_sensor: false # Optional: whether to expose the sensor as a binary sensor in Home Assistant
-        availability_mode: any # Optional: Valid entries are all, any, and latest. (default: all)
+        availability_mode: any # Optional: Valid entries are all, any, latest and online. (default: all)
 
   - host: 192.168.0.3
     name: Raspberry Pi 2
