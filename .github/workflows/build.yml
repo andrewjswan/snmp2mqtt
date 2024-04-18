@@ -34,6 +34,7 @@ jobs:
     if: ${{ needs.changes.outputs.changes == 'true' }}
     needs: 
       - changes
+      - test
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
@@ -214,9 +215,6 @@ jobs:
 
   test:
     name: Test / Build
-    if: ${{ needs.changes.outputs.dependencies == 'true' }}
-    needs: 
-      - changes
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout
