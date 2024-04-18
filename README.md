@@ -10,6 +10,10 @@
 
 Expose SNMP sensors to MQTT with Home Assistant support.
 
+## Architecture
+
+![Supports amd64 Architecture][amd64-shield] ![Supports armv6 Architecture][armv6-shield] ![Supports armv7 Architecture][armv7-shield] ![Supports armv8 Architecture][armv8-shield] ![Supports arm64 Architecture][arm64-shield]
+
 ## config.yml
 
 ```yaml
@@ -96,3 +100,9 @@ services:
 ## Notes
 
 Based on https://github.com/dchesterton/snmp2mqtt
+
+[amd64-shield]: https://img.shields.io/badge/amd64-yes-blue.svg
+[armv6-shield]: https://img.shields.io/badge/armv6-yes-blue.svg
+[armv7-shield]: https://img.shields.io/badge/armv7-yes-blue.svg
+[armv8-shield]: https://img.shields.io/badge/armv8-yes-blue.svg
+[arm64-shield]: https://img.shields.io/badge/armh64-yes-blue.svg
