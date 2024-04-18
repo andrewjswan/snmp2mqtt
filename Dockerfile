@@ -18,6 +18,13 @@ FROM base
 STOPSIGNAL SIGINT
 WORKDIR /app
 
+# Add Label
+LABEL \
+  description="Expose SNMP sensors to MQTT" \
+  maintainer="Andrew J.Swan" \
+  org.opencontainers.image.title=snmp2mqtt \
+  org.opencontainers.image.description="Expose SNMP sensors to MQTT"
+
 COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /app/dist /app/dist
 COPY --from=builder /app/package.json /app/package.json
