@@ -102,7 +102,7 @@ export const schema = {
         },
         availability_mode: {
           type: "string",
-          enum: ["all", "any", "latest"],
+          enum: ["all", "any", "latest", "online"],
           default: "all",
         },
       },

@@ -16,17 +16,17 @@ export const createHomeAssistantTopics = async (
       via_device: "snmp2mqtt",
     }
 
-    if (target.mac) {
-      device.connections = [["mac", target.mac]]
-    }
-    if (target.suggested_area) {
-      device.suggested_area = target.suggested_area
-    }
     if (target.device_manufacturer) {
       device.manufacturer = target.device_manufacturer
     }
     if (target.device_model) {
       device.model = target.device_model
+    }
+    if (target.suggested_area) {
+      device.suggested_area = target.suggested_area
+    }
+    if (target.mac) {
+      device.connections = [["mac", target.mac]]
     }
 
     for (const sensor of target.sensors) {
@@ -35,14 +35,6 @@ export const createHomeAssistantTopics = async (
       const topic = `${prefix}/${sensorType}/snmp2mqtt/${target.name ? sanitize(target.name) : sanitize(target.host)}_${sensorName}/config`
 
       const discovery: any = {
-        availability: [
-          {
-            topic: mqtt.STATUS_TOPIC,
-          },
-          {
-            topic: mqtt.sensorStatusTopic(sensor, target),
-          },
-        ],
         device,
         name: sensor.name,
         unique_id: `snmp2mqtt.${md5(`${target.host}-${sensor.oid}`)}`,
@@ -51,7 +43,18 @@ export const createHomeAssistantTopics = async (
       }
 
       if (sensor.availability_mode) {
-        discovery.availability_mode = sensor.availability_mode
+        if (sensor.availability_mode !== "online")
+        {
+          discovery.availability = [
+            {
+              topic: mqtt.STATUS_TOPIC,
+            },
+            {
+              topic: mqtt.sensorStatusTopic(sensor, target),
+            },
+          ]
+          discovery.availability_mode = sensor.availability_mode
+        }
       }
       if (sensor.template) {
         discovery.value_template = sensor.template
