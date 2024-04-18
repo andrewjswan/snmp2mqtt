@@ -3,6 +3,7 @@ name: Pull / SNMP2MQTT
 on:
   pull_request:
     types: [opened, edited]
+  workflow_call:
 
 env:
   REGISTRY_IMAGE: ghcr.io/${{ github.repository }}
