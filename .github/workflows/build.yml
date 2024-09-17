@@ -211,10 +211,10 @@ jobs:
 
       - name: Inspect image
         run: |
-          docker buildx imagetools inspect ${{ env.REGISTRY_IMAGE }}:${{ steps.meta.outputs.version }}  
+          docker buildx imagetools inspect ${{ env.REGISTRY_IMAGE }}:${{ steps.meta.outputs.version }}
 
       - name: Delete Digests
         uses: geekyeggo/delete-artifact@v5
         with:
-            name: digests-*
-            failOnError: false
+          name: digests-*
+          failOnError: false
