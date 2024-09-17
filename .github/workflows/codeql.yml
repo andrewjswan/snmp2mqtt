@@ -3,6 +3,8 @@ name: "Workflow / Code Scanning - CodeQL"
 on:
   workflow_call:
   workflow_dispatch:
+  schedule:
+    - cron: '40 1 * * 1'
 
 jobs:
   CodeQL:
