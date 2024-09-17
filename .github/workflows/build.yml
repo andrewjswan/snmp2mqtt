@@ -16,18 +16,18 @@ jobs:
       changes: ${{ steps.changes.outputs.scr }}
       dependencies: ${{ steps.changes.outputs.dependencies }}
     steps:
-    - uses: actions/checkout@v4
-    - uses: dorny/paths-filter@v3
-      id: changes
-      with:
-        filters: |
-          scr:
-            - 'src/**'
-          dependencies:
-            - 'Dockerfile'
-            - 'package.json'
-            - 'tsconfig.json'
-            - 'yarn.lock'
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            scr:
+              - 'src/**'
+            dependencies:
+              - 'Dockerfile'
+              - 'package.json'
+              - 'tsconfig.json'
+              - 'yarn.lock'
 
   test:
     name: Test / Build
@@ -37,7 +37,7 @@ jobs:
   version:
     name: Version / Bump
     if: ${{ needs.changes.outputs.changes == 'true' }}
-    needs: 
+    needs:
       - changes
       - test
     runs-on: ubuntu-latest
@@ -56,7 +56,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           commit-message: 'CI: Version bump to {{version}}'
-    
+
       - name: Extract Version
         run: |
           RE='[^0-9]*\([0-9]*\)[.]\([0-9]*\)[.]\([0-9]*\)\([0-9A-Za-z-]*\)'
@@ -73,7 +73,7 @@ jobs:
   codeql:
     name: CodeQL
     uses: ./.github/workflows/codeql.yml
-    needs: 
+    needs:
       - version
     permissions:
       security-events: write
@@ -82,7 +82,7 @@ jobs:
   build:
     name: Digest
     if: ${{ needs.changes.outputs.changes == 'true' }}
-    needs: 
+    needs:
       - version
       - changes
     runs-on: ubuntu-latest
@@ -144,7 +144,7 @@ jobs:
         run: |
           mkdir -p /tmp/digests
           digest="${{ steps.build.outputs.digest }}"
-          touch "/tmp/digests/${digest#sha256:}"          
+          touch "/tmp/digests/${digest#sha256:}"
 
       - name: Upload digest
         uses: actions/upload-artifact@v4
@@ -156,7 +156,7 @@ jobs:
 
   release:
     name: Release
-    needs: 
+    needs:
       - version
       - build
     runs-on: ubuntu-latest
@@ -167,7 +167,7 @@ jobs:
           name: SNMP2MQTT v${{needs.version.outputs.version}}
           tag_name: ${{needs.version.outputs.version}}
           generate_release_notes: true
-      
+
   merge:
     name: Publish to Github
     runs-on: ubuntu-latest
@@ -207,12 +207,12 @@ jobs:
         working-directory: /tmp/digests
         run: |
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
-            $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)          
+            $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)
 
       - name: Inspect image
         run: |
           docker buildx imagetools inspect ${{ env.REGISTRY_IMAGE }}:${{ steps.meta.outputs.version }}  
-      
+
       - name: Delete Digests
         uses: geekyeggo/delete-artifact@v5
         with:
