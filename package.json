@@ -39,7 +39,7 @@
         "@types/js-yaml": "^4.0.9",
         "@types/luxon": "^3.4.2",
         "@types/node": "^14.14.27",
-        "prettier": "^3.3.3",
+        "prettier": "^3.4.1",
         "ts-node": "^10.9.2",
         "typescript": "^5.7.2"
     },
