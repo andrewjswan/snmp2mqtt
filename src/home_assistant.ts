@@ -13,7 +13,6 @@ export const createHomeAssistantTopics = async (
     const device: any = {
       name: target.name ?? target.host,
       identifiers: target.host,
-      via_device: "snmp2mqtt",
     }
 
     if (target.device_manufacturer) {
