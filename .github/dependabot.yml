@@ -1,7 +1,8 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/"
+    directories:
+      - "*"
     schedule:
       interval: weekly
       day: monday
@@ -12,7 +13,8 @@ updates:
       prefix: "[NPM]"
 
   - package-ecosystem: "github-actions"
-    directory: "/"
+    directories:
+      - "*"
     schedule:
       interval: weekly
       day: monday
