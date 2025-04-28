@@ -50,7 +50,6 @@ jobs:
 
   build:
     name: Digest
-    if: ${{ needs.changes.outputs.changes == 'true' }}
     needs:
       - version
     runs-on: ubuntu-latest
