@@ -1,4 +1,4 @@
-name: Build / SNMP2MQTT
+name: Release / SNMP2MQTT
 
 on:
   workflow_dispatch:
