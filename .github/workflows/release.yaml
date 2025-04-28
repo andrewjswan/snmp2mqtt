@@ -1,0 +1,188 @@
+name: Build / SNMP2MQTT
+
+on:
+  workflow_dispatch:
+
+env:
+  REGISTRY_IMAGE: ghcr.io/${{ github.repository }}
+
+jobs:
+  version:
+    name: Version / Bump
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      major: ${{ steps.version.outputs.major }}
+      minor: ${{ steps.version.outputs.minor }}
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      - name: Automated Version Bump
+        uses: phips28/gh-action-bump-version@master
+        id: bump
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          commit-message: 'CI: Version bump to {{version}}'
+
+      - name: Extract Version
+        run: |
+          RE='[^0-9]*\([0-9]*\)[.]\([0-9]*\)[.]\([0-9]*\)\([0-9A-Za-z-]*\)'
+          MAJOR=`echo $version | sed -e "s#$RE#\1#"`
+          MINOR=`echo $version | sed -e "s#$RE#\2#"`
+          PATCH=`echo $version | sed -e "s#$RE#\3#"`
+          echo "version=$MAJOR.$MINOR.$PATCH" >> $GITHUB_OUTPUT
+          echo "major=$MAJOR" >> $GITHUB_OUTPUT
+          echo "minor=$MAJOR.$MINOR" >> $GITHUB_OUTPUT
+        id: version
+        env:
+          version: ${{ steps.bump.outputs.newTag }}
+
+  codeql:
+    name: CodeQL
+    uses: ./.github/workflows/codeql.yml
+    needs:
+      - version
+    permissions:
+      security-events: write
+    secrets: inherit
+
+  build:
+    name: Digest
+    if: ${{ needs.changes.outputs.changes == 'true' }}
+    needs:
+      - version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ needs.version.outputs.version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - linux/amd64
+          - linux/arm/v6
+          - linux/arm/v7
+          - linux/arm/v8
+          - linux/arm64
+    steps:
+      - name: Prepare
+        run: |
+          platform=${{ matrix.platform }}
+          echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
+
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      - name: Docker Meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY_IMAGE }}
+          labels: |
+            maintainer=andrewjswan
+            org.opencontainers.image.title=snmp2mqtt
+            org.opencontainers.image.description=Expose SNMP sensors to MQTT
+          tags: |
+            type=semver,pattern={{version}},value=${{ needs.version.outputs.version }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+
+      - name: Build and Push by Digest
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: ${{ matrix.platform }}
+          labels: ${{ steps.meta.outputs.labels }}
+          outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true,push=true
+
+      - name: Export Digest
+        run: |
+          mkdir -p /tmp/digests
+          digest="${{ steps.build.outputs.digest }}"
+          touch "/tmp/digests/${digest#sha256:}"
+
+      - name: Upload digest
+        uses: actions/upload-artifact@v4
+        with:
+          name: digests-${{ env.PLATFORM_PAIR }}
+          path: /tmp/digests/*
+          if-no-files-found: error
+          retention-days: 1
+
+  release:
+    name: Release
+    needs:
+      - version
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: SNMP2MQTT v${{needs.version.outputs.version}}
+          tag_name: ${{needs.version.outputs.version}}
+          generate_release_notes: true
+
+  merge:
+    name: Publish to Github
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - name: Download Digests
+        uses: actions/download-artifact@v4
+        with:
+          path: /tmp/digests
+          pattern: digests-*
+          merge-multiple: true
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Docker Meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY_IMAGE }}
+          labels: |
+            maintainer=andrewjswan
+            org.opencontainers.image.title=snmp2mqtt
+            org.opencontainers.image.description=Expose SNMP sensors to MQTT
+          tags: |
+            type=semver,pattern={{version}},value=${{ needs.build.outputs.version }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+
+      - name: Create Manifest list and Push
+        working-directory: /tmp/digests
+        run: |
+          docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
+            $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)
+
+      - name: Inspect image
+        run: |
+          docker buildx imagetools inspect ${{ env.REGISTRY_IMAGE }}:${{ steps.meta.outputs.version }}
+
+      - name: Delete Digests
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: digests-*
+          failOnError: false
