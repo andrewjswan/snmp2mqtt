@@ -1,17 +1,6 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directories:
-      - "*"
-    schedule:
-      interval: weekly
-      day: monday
-      time: "12:00"
-    ignore:
-      - dependency-name: "@types/node"
-    commit-message:
-      prefix: "[NPM]"
-
+  # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
     directories:
       - "*"
@@ -19,5 +8,38 @@ updates:
       interval: weekly
       day: monday
       time: "12:00"
+    labels:
+      - dependencies
+      - github-actions
     commit-message:
       prefix: "[DEP]"
+
+  # Enable version updates for Node
+  - package-ecosystem: "npm"
+    directories:
+      - "*"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "12:00"
+    labels:
+      - dependencies
+      - node
+    ignore:
+      - dependency-name: "@types/node"
+    commit-message:
+      prefix: "[NPM]"
+
+  # Enable version updates for Docker
+  - package-ecosystem: "docker"
+    directories:
+      - "*"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "12:00"
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "DCR"
