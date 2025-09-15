@@ -443,10 +443,10 @@ ms@2.1.2:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-net-snmp@^3.25.0:
-  version "3.25.0"
-  resolved "https://registry.yarnpkg.com/net-snmp/-/net-snmp-3.25.0.tgz#0702c56c363be1b8e70fef8fbdeb87b1de3e2203"
-  integrity sha512-sEysFa63X2d8Dge08QvZljAoqWYUvceK8ykrhbfEamovKBLl2kghD+GvuPNW8kqlVo47qlhMkmCHwZf4bJDqPA==
+net-snmp@^3.25.2:
+  version "3.25.2"
+  resolved "https://registry.yarnpkg.com/net-snmp/-/net-snmp-3.25.2.tgz#5b6e0b84ad3ffaeb2d67d8a8528e3dda615deb5f"
+  integrity sha512-n+P8A1w7NCRPAwlLqxrpNgo/6JVdzko8cLdUFZVr3ziw1PsNTNZfIzl9F1QIj0yf7VbwdirJMVsy+ZBtA9eUCA==
   dependencies:
     asn1-ber "^1.2.1"
     smart-buffer "^4.1.0"
