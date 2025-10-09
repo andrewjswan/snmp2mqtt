@@ -23,6 +23,7 @@ const log = createLogger(config.log)
       mqtt,
       config.targets,
       config.homeassistant.prefix,
+      version,
     )
   }
 
