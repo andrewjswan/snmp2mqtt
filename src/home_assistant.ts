@@ -6,6 +6,7 @@ export const createHomeAssistantTopics = async (
   mqtt: Client,
   targets: Array<TargetConfig>,
   prefix: string,
+  version: string,
 ) => {
   const promises = []
 
@@ -28,6 +29,12 @@ export const createHomeAssistantTopics = async (
       device.connections = [["mac", target.mac]]
     }
 
+    const origin: any = {
+      name: "SNMP2MQTT",
+      sw_version: target.host,
+      url: "https://github.com/andrewjswan/snmp2mqtt",
+    }
+
     for (const sensor of target.sensors) {
       const sensorType = sensor.binary_sensor ? "binary_sensor" : "sensor"
       const sensorName = slugify(sensor.name)
@@ -35,6 +42,7 @@ export const createHomeAssistantTopics = async (
 
       const discovery: any = {
         device,
+        origin,
         name: sensor.name,
         unique_id: `snmp2mqtt.${md5(`${target.host}-${sensor.oid}`)}`,
         state_topic: mqtt.sensorValueTopic(sensor, target),
