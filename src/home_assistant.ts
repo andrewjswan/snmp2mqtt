@@ -31,7 +31,7 @@ export const createHomeAssistantTopics = async (
 
     const origin: any = {
       name: "SNMP2MQTT",
-      sw_version: target.host,
+      sw_version: version,
       url: "https://github.com/andrewjswan/snmp2mqtt",
     }
 
