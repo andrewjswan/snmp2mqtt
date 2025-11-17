@@ -104,7 +104,7 @@ services:
 Based on https://github.com/dchesterton/snmp2mqtt
 
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-blue.svg
-[armv6-shield]: https://img.shields.io/badge/armv6-yes-blue.svg
-[armv7-shield]: https://img.shields.io/badge/armv7-yes-blue.svg
-[armv8-shield]: https://img.shields.io/badge/armv8-yes-blue.svg
+[armv6-shield]: https://img.shields.io/badge/armv6-no-red.svg
+[armv7-shield]: https://img.shields.io/badge/armv7-no-red.svg
+[armv8-shield]: https://img.shields.io/badge/armv8-no-red.svg
 [arm64-shield]: https://img.shields.io/badge/armh64-yes-blue.svg
