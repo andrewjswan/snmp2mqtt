@@ -16,7 +16,7 @@ jobs:
       minor: ${{ steps.version.outputs.minor }}
     steps:
       - name: Git Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Automated Version Bump
         uses: phips28/gh-action-bump-version@master
@@ -68,7 +68,7 @@ jobs:
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
 
       - name: Git Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Docker Meta
         id: meta
