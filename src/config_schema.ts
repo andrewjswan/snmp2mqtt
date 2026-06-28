@@ -91,6 +91,9 @@ export const schema = {
         device_class: {
           type: "string",
         },
+        state_class: {
+          type: "string",
+        },
         entity_category: {
           type: "string",
         },
