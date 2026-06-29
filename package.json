@@ -1,6 +1,6 @@
 {
     "name": "snmp2mqtt",
-    "version": "1.0.19",
+    "version": "1.0.20",
     "description": "Expose SNMP sensors to MQTT with Home Assistant support",
     "license": "MIT",
     "bin": {
