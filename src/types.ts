@@ -46,6 +46,7 @@ export interface SensorConfig {
   template?: string
   unit_of_measurement?: string
   device_class?: string
+  state_class?: string
   entity_category?: string
   icon?: string
   binary_sensor?: boolean

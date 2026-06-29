@@ -72,6 +72,9 @@ export const createHomeAssistantTopics = async (
       if (sensor.device_class) {
         discovery.device_class = sensor.device_class
       }
+      if (sensor.state_class) {
+        discovery.state_class = sensor.state_class
+      }
       if (sensor.entity_category) {
         discovery.entity_category = sensor.entity_category
       }
