@@ -224,10 +224,10 @@ base64-js@^1.3.1:
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
-better-ajv-errors@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/better-ajv-errors/-/better-ajv-errors-3.0.2.tgz#37b23193011f1805958d82e75508dcceef4e113d"
-  integrity sha512-2VHXZZa5pNA9GcQwk/wmgfUpmtVm0JzUgA/H1IrFSbZsuJV/8OzdIzUpIusjlNWS2Mzl2sa+uiS1qZImG6V9xw==
+better-ajv-errors@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/better-ajv-errors/-/better-ajv-errors-3.0.3.tgz#5d739a3a09650d448073ace22409d982c4f392d7"
+  integrity sha512-OPgkiEdZ++BR40VRxf/cxlBKU7hyhyZytmCj26nW6Ask71layI9vptG7yOSAXdmfzIvHkTYlKpeGf6dOMj3Dug==
   dependencies:
     "@humanwhocodes/momoa" "^3.3.13"
     jsonpointer "^5.0.1"
