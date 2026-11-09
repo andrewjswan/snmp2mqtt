@@ -224,14 +224,13 @@ base64-js@^1.3.1:
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
-better-ajv-errors@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/better-ajv-errors/-/better-ajv-errors-3.0.3.tgz#5d739a3a09650d448073ace22409d982c4f392d7"
-  integrity sha512-OPgkiEdZ++BR40VRxf/cxlBKU7hyhyZytmCj26nW6Ask71layI9vptG7yOSAXdmfzIvHkTYlKpeGf6dOMj3Dug==
+better-ajv-errors@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/better-ajv-errors/-/better-ajv-errors-4.0.0.tgz#b584406adc72e205bd65836bbd4280b55b2ba278"
+  integrity sha512-OdFyB75h7DbSosNb9+DpmzV4UdzSOoFKiFzva4xjiR8CVueZvDPV6kbbF2hMywTkKgWI+ukax3mK4xdejzTcXg==
   dependencies:
     "@humanwhocodes/momoa" "^3.3.13"
     jsonpointer "^5.0.1"
-    leven "^3.1.0 < 4"
 
 bigint-buffer@^1.1.5:
   version "1.1.5"
@@ -418,11 +417,6 @@ leven@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/leven/-/leven-2.1.0.tgz#c2e7a9f772094dee9d34202ae8acce4687875580"
   integrity sha512-nvVPLpIHUxCUoRLrFqTgSxXJ614d8AgQoWl7zPe/2VadE8+1dpU3LBhowRuBAcuwruWtOdD8oYC9jDNJjXDPyA==
-
-"leven@^3.1.0 < 4":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/leven/-/leven-3.1.0.tgz#77891de834064cccba82ae7842bb6b14a13ed7f2"
-  integrity sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==
 
 lru-cache@^6.0.0:
   version "6.0.0"
